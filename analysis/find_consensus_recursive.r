@@ -13,10 +13,10 @@ set.seed(3.14)
 
 cutoff_confidence=0.51
 
-system("mkdir fa_consensus")
-
 path1="muscle_fastaout_nowrap/"
 path2="fa_consensus/"
+
+system(paste0("mkdir ",path2))
 
 files=list.files(path1)
 
