@@ -70,5 +70,9 @@ for(i in ind_del){ # remove redundant files & delete lines
     system(paste0("rm ",path1,tmp_id,"*"))
 }
 
-write.csv(tbl[-ind_del,],file="summary_of_consensus.csv",quote=F,row.names=F)
+if(!is.null(ind_del)){
+    tbl=tbl[-ind_del,]
+}
+
+write.csv(tbl,file="summary_of_consensus.csv",quote=F,row.names=F)
 
