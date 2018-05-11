@@ -1,4 +1,8 @@
-## name: create_consensus_table.r
+## usage: Rscript 26_create_consensus_table.r
+
+system(paste0("echo @@@ 26_create_consensus_table.r >> ./analysis.log.txt"))
+
+#################################################################################################
 ## date: 03/23/2018
 
 path1="fa_consensus/"

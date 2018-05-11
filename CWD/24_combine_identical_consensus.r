@@ -1,6 +1,9 @@
-## name: combine_identical_consensus.r
-## date: 03/24/2018
+## usage:   Rscript 24_combine_identical_consensus.r
 
+system(paste0("echo @@@ 24_combine_identical_consensus.r >> ./analysis.log.txt"))
+
+#################################################################################################
+## date: 03/24/2018
 ## This is a patch for find_consensus_recursive.r, to combine identical consensus sequences.
 ## find_consensus_recursive.r has two-step cluster - the 1st hcluster based on length differences is necessary
 ## Otherwise small clusters can not be identified at the 2nd kmeans cluster - we need to pre-assign a cluter number to kmeans (default=2)

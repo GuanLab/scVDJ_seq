@@ -1,5 +1,10 @@
-## name: find_consensus_recursive.r
-## date: 11/26/2017 Hongyang,     Tomo, edit, Dec 14, 2017
+## usage:   Rscript 23_find_consensus_recursive.r  20 200 3000
+
+system(paste0("echo @@@ 23_find_consensus_recursive.r >> ./analysis.log.txt"))
+
+#################################################################################################
+# 20 is the length difference cutoff for the initial hierarchical clustering to identify small clusters
+# 200 & 3000 are the cutoffs of the sequence length; <200 or >3000 are excluded
 
 ## This version defines cluster by 1.seq_length_diff 2.confidence_cutoff
 ## Only clusters with >= confid_cutoff and >= 2 sequences are recorded
@@ -8,6 +13,10 @@
 # add top 5 minimum confidence score
 # reformat the table - one cluster one row
 # add random seed - otherwise the kmeans subcluster part has different results
+
+## 180407 update:
+# new, line 157, hc=hclust(dist((fa_length),method="manhattan"),method="median")
+# old, line 154, hc=hclust(dist((fa_length),method="manhattan"))
 
 set.seed(3.14)
 
@@ -151,7 +160,7 @@ for(the_file in files){
         fa_length=unlist(lapply(as.list(fa[seq(2,length(fa),2)]),function(x){
                 sum(unlist(strsplit(x,split=""))!="-")
                 }))
-        hc=hclust(dist((fa_length),method="manhattan"))
+        hc=hclust(dist((fa_length),method="manhattan"),method="median")
         grps=cutree(hc,h=diff_length)
 
         # process each cluster
